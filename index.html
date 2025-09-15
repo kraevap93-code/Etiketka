@@ -4,36 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Единое Приложение</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Стили для общего вида страницы */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
             height: 100vh; /* Занимаем всю высоту экрана */
-            background-color: #f4f4f9;
+            background-color: #27272a; /* Цвет фона из темной темы вашего примера */
         }
 
         /* Стили для верхнего меню (навигации) */
         .app-nav {
-            background-color: #333;
+            background-color: transparent; /* Фон навигации теперь прозрачный, чтобы соответствовать фону страницы */
             padding: 15px 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap; /* Для переноса ссылок на маленьких экранах */
+            justify-content: center; /* Выравнивание кнопок по центру */
+            gap: 15px; /* Немного уменьшим расстояние */
+            flex-wrap: wrap; /* Добавлено для переноса ссылок на маленьких экранах */
+            border-bottom: 1px solid #52525b; /* Цвет границы из темной темы для лучшего контраста */
         }
         .app-nav a {
-            color: white;
+            /* Стили для неактивных кнопок по умолчанию */
+            background-color: transparent;
+            color: #f4f4f5; /* Светлый текст для неактивных кнопок */
+            
+            /* Общие стили для всех кнопок */
             text-decoration: none;
             font-size: 16px;
-            padding: 8px 12px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: background-color 0.2s, color 0.2s, filter 0.2s;
         }
-        .app-nav a:hover, .app-nav a.active {
-            background-color: #555;
+
+        /* Эффект при наведении на НЕактивную кнопку */
+        .app-nav a:hover:not(.active) {
+            background-color: #3f3f46; /* Темно-серый фон при наведении */
+        }
+        
+        /* Стиль ТОЛЬКО для активной кнопки */
+        .app-nav a.active {
+            background-color: #facc15; /* Желтый фон */
+            color: #111827; /* Темный текст */
+        }
+
+        /* Эффект при наведении на активную кнопку */
+        .app-nav a.active:hover {
+            filter: brightness(0.9); /* Слегка затемняем желтый фон */
         }
 
         /* Стили для контейнера, в котором будет приложение */
@@ -46,10 +66,10 @@
 <body>
 
     <nav class="app-nav">
-        <a href="javascript:void(0);" onclick="loadApp('https://kraevap93-code.github.io/Sklad/', this)" class="active">Главная</a>
+        <a href="javascript:void(0);" onclick="loadApp('https://kraevap93-code.github.io/Sklad/', this)" class="active">Склад</a>
+        <a href="javascript:void(0);" onclick="loadApp('https://kraevap93-code.github.io/Peredacha-smen/', this)">Передача смен</a>
         <a href="javascript:void(0);" onclick="loadApp('https://kraevap93-code.github.io/Klimat-GIP/', this)">Климат</a>
         <a href="javascript:void(0);" onclick="loadApp('https://kraevap93-code.github.io/Grafik/', this)">График</a>
-        <a href="javascript:void(0);" onclick="loadApp('https://kraevap93-code.github.io/Peredacha-smen/', this)">Передача смен</a>
     </nav>
 
     <iframe id="app-frame" class="app-container" src="https://kraevap93-code.github.io/Sklad/"></iframe>
@@ -71,3 +91,6 @@
 
 </body>
 </html>
+
+
+
