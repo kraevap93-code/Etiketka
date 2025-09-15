@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Единое Приложение</title>
+    <style>
+        /* Стили для общего вида страницы */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh; /* Занимаем всю высоту экрана */
+            background-color: #f4f4f9;
+        }
+
+        /* Стили для верхнего меню (навигации) */
+        .app-nav {
+            background-color: #333;
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap; /* Для переноса ссылок на маленьких экранах */
+        }
+        .app-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .app-nav a:hover, .app-nav a.active {
+            background-color: #555;
+        }
+
+        /* Стили для контейнера, в котором будет приложение */
+        .app-container {
+            flex-grow: 1; /* Занимает все оставшееся место */
+            border: none; /* Убираем рамку у iframe */
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="app-nav">
+        <a href="javascript:void(0);" onclick="loadApp('https://kraevap93-code.github.io/Sklad/', this)" class="active">Главная</a>
+        <a href="javascript:void(0);" onclick="loadApp('https://kraevap93-code.github.io/Klimat-GIP/', this)">Климат</a>
+        <a href="javascript:void(0);" onclick="loadApp('https://kraevap93-code.github.io/Grafik/', this)">График</a>
+        <a href="javascript:void(0);" onclick="loadApp('https://kraevap93-code.github.io/Peredacha-smen/', this)">Передача смен</a>
+    </nav>
+
+    <iframe id="app-frame" class="app-container" src="https://kraevap93-code.github.io/Sklad/"></iframe>
+
+    <script>
+        const navLinks = document.querySelectorAll('.app-nav a');
+        const appFrame = document.getElementById('app-frame');
+
+        // Функция для загрузки приложения в iframe
+        function loadApp(url, clickedLink) {
+            // Устанавливаем URL для iframe
+            appFrame.src = url;
+
+            // Обновляем "активный" класс в меню
+            navLinks.forEach(link => link.classList.remove('active'));
+            clickedLink.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
