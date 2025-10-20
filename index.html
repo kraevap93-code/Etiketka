@@ -4,36 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etiketka</title>
-    <!-- ИСПРАВЛЕННАЯ ССЫЛКА: Указывает на репозиторий Etiketka и файл logo4c.jpg -->
+    <!-- Иконка из оригинальной программы -->
     <link rel="icon" href="https://kraevap93-code.github.io/Etiketka/logo4c.jpg" type="image/jpeg">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Стили для общего вида страницы */
+        /* --- Стили из "Журнала Ремонтных Работ" (Программа 1) --- */
+         :root {
+            --bg-color: #27272a;
+            --card-bg-color: #3f3f46;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --input-bg: #27272a;
+            --border-color: #52525b;
+            --header-bg: #27272a;
+            --table-header-bg: #3f3f46;
+            --hover-bg: #52525b;
+            --date-header-bg: #52525b;
+            --problem-bg: rgba(239, 68, 68, 0.1);
+            --problem-hover-bg: rgba(239, 68, 68, 0.2);
+            --toggle-bg: #52525b;
+            --toggle-dot-bg: #d4d4d8;
+            --toggle-icon-color: #3f3f46;
+            --urgency-high: #ef4444; /* red-500 */
+            --urgency-medium: #f97316; /* orange-500 */
+            --urgency-low: #22c55e; /* green-500 */
+        }
+
+        html.light {
+            --bg-color: #f9fafb;
+            --card-bg-color: #ffffff;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --input-bg: #ffffff;
+            --border-color: #d1d5db;
+            --header-bg: #f9fafb;
+            --table-header-bg: #f3f4f6;
+            --hover-bg: #f3f4f6;
+            --date-header-bg: #e5e7eb;
+            --problem-bg: rgba(239, 68, 68, 0.1);
+            --problem-hover-bg: rgba(239, 68, 68, 0.2);
+            --toggle-bg: #e5e7eb;
+            --toggle-dot-bg: #ffffff;
+            --toggle-icon-color: #4b5563;
+        }
+        
+        /* Стили для общего вида страницы (из Программы 2) с адаптацией под темную тему */
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
-            height: 100vh; /* Занимаем всю высоту экрана */
-            background-color: #27272a; /* Цвет фона из темной темы вашего примера */
+            height: 100vh; 
+            background-color: var(--bg-color); 
         }
 
-        /* Стили для верхнего меню (навигации) */
+        /* Стили для верхнего меню (навигации) (из Программы 2) */
         .app-nav {
-            background-color: transparent; /* Фон навигации теперь прозрачный, чтобы соответствовать фону страницы */
+            background-color: transparent;
             padding: 15px 20px;
             display: flex;
-            justify-content: center; /* Выравнивание кнопок по центру */
-            gap: 15px; /* Немного уменьшим расстояние */
-            flex-wrap: wrap; /* Добавлено для переноса ссылок на маленьких экранах */
-            border-bottom: 1px solid #52525b; /* Цвет границы из темной темы для лучшего контраста */
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--border-color);
         }
         .app-nav a {
-            /* Стили для неактивных кнопок по умолчанию */
             background-color: transparent;
-            color: #f4f4f5; /* Светлый текст для неактивных кнопок */
-            
-            /* Общие стили для всех кнопок */
+            color: var(--text-primary);
             text-decoration: none;
             font-size: 16px;
             font-weight: 600;
@@ -42,31 +80,28 @@
             transition: background-color 0.2s, color 0.2s, filter 0.2s;
         }
 
-        /* Эффект при наведении на НЕактивную кнопку */
         .app-nav a:hover:not(.active) {
-            background-color: #3f3f46; /* Темно-серый фон при наведении */
+            background-color: var(--card-bg-color);
         }
         
-        /* Стиль ТОЛЬКО для активной кнопки */
         .app-nav a.active {
             background-color: #facc15; /* Желтый фон */
             color: #111827; /* Темный текст */
         }
 
-        /* Эффект при наведении на активную кнопку */
         .app-nav a.active:hover {
-            filter: brightness(0.9); /* Слегка затемняем желтый фон */
+            filter: brightness(0.9);
         }
 
         /* Стили для контейнера, в котором будет приложение */
         .app-container {
             flex-grow: 1; /* Занимает все оставшееся место */
             border: none; /* Убираем рамку у iframe */
+            background-color: var(--bg-color); /* Фон для iframe, чтобы не было белой вспышки */
         }
     </style>
 </head>
 <body>
-
     <nav class="app-nav">
         <a href="javascript:void(0);" onclick="loadApp('https://kraevap93-code.github.io/Sklad/', this)" class="active">Склад</a>
         <a href="javascript:void(0);" onclick="loadApp('https://kraevap93-code.github.io/Peredacha-smen/', this)">Передача смен</a>
@@ -74,6 +109,7 @@
         <a href="javascript:void(0);" onclick="loadApp('https://kraevap93-code.github.io/Schetchik-cifra/', this)">Счетчик цифра</a>
         <a href="javascript:void(0);" onclick="loadApp('https://kraevap93-code.github.io/Grafik/', this)">График</a>
         <a href="javascript:void(0);" onclick="loadApp('https://kraevap93-code.github.io/Kalkulyator/', this)">Калькулятор</a>
+        <a href="javascript:void(0);" onclick="loadApp('local', this)">Заявки на ремонт</a>
     </nav>
 
     <iframe id="app-frame" class="app-container" src="https://kraevap93-code.github.io/Sklad/"></iframe>
@@ -82,17 +118,1002 @@
         const navLinks = document.querySelectorAll('.app-nav a');
         const appFrame = document.getElementById('app-frame');
 
-        // Функция для загрузки приложения в iframe
-        function loadApp(url, clickedLink) {
-            // Устанавливаем URL для iframe
-            appFrame.src = url;
+        // Весь HTML код "Журнала ремонтных работ" сохраняем в переменной
+        const repairLogAppHtml = `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Журнал Ремонтных Работ</title>
+    <script src="https://cdn.tailwindcss.com"><\/script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #27272a;
+            --card-bg-color: #3f3f46;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --input-bg: #27272a;
+            --border-color: #52525b;
+            --header-bg: #27272a;
+            --table-header-bg: #3f3f46;
+            --hover-bg: #52525b;
+            --date-header-bg: #52525b;
+            --problem-bg: rgba(239, 68, 68, 0.1);
+            --problem-hover-bg: rgba(239, 68, 68, 0.2);
+            --toggle-bg: #52525b;
+            --toggle-dot-bg: #d4d4d8;
+            --toggle-icon-color: #3f3f46;
+            --urgency-high: #ef4444; /* red-500 */
+            --urgency-medium: #f97316; /* orange-500 */
+            --urgency-low: #22c55e; /* green-500 */
+        }
+
+        html.light {
+            --bg-color: #f9fafb;
+            --card-bg-color: #ffffff;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --input-bg: #ffffff;
+            --border-color: #d1d5db;
+            --header-bg: #f9fafb;
+            --table-header-bg: #f3f4f6;
+            --hover-bg: #f3f4f6;
+            --date-header-bg: #e5e7eb;
+            --problem-bg: rgba(239, 68, 68, 0.1);
+            --problem-hover-bg: rgba(239, 68, 68, 0.2);
+            --toggle-bg: #e5e7eb;
+            --toggle-dot-bg: #ffffff;
+            --toggle-icon-color: #4b5563;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .card {
+            background-color: var(--card-bg-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            transition: background-color 0.3s;
+        }
+        .form-input, .form-select, .form-textarea {
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 0.375rem;
+            padding: 0.5rem 0.75rem;
+            width: 100%;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #FFC700;
+            box-shadow: 0 0 0 2px rgba(255, 199, 0, 0.5);
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1rem;
+            border: 1px solid transparent;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 0.375rem;
+            transition: background-color 0.2s;
+            cursor: pointer;
+        }
+        .btn-submit {
+            color: #1E1E1E;
+            background-color: #FFC700;
+        }
+        .btn-submit:hover {
+            background-color: #e6b300;
+        }
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+        .btn-secondary:hover {
+            background-color: var(--hover-bg);
+        }
+        .table-header {
+            background-color: var(--table-header-bg);
+        }
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex; align-items: center; justify-content: center; z-index: 50;
+            transition: opacity 0.3s ease;
+        }
+        .scrollable-table {
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        .theme-toggle-label {
+            background-color: var(--toggle-bg);
+        }
+        .slider-dot {
+            background-color: var(--toggle-dot-bg);
+            transform: translateX(0);
+        }
+        .slider-checkbox:checked ~ .slider-dot {
+            transform: translateX(2rem); /* w-8 */
+        }
+        .urgency-badge {
+            display: inline-block;
+            padding: 0.25em 0.6em;
+            font-size: 0.75em;
+            font-weight: 600;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 0.375rem;
+            color: white;
+        }
+        .urgency-высокая { background-color: var(--urgency-high); }
+        .urgency-средняя { background-color: var(--urgency-medium); }
+        .urgency-низкая { background-color: var(--urgency-low); }
+
+        .custom-checkbox {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 0.375rem;
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .custom-checkbox:checked {
+            background-color: #22c55e;
+            border-color: #22c55e;
+        }
+        .custom-checkbox:checked::after {
+            content: '✔';
+            position: absolute;
+            color: white;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1rem;
+        }
+        .tab-btn {
+            padding: 0.5rem 1rem;
+            border-bottom-width: 3px;
+            border-color: transparent;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: border-color 0.2s, color 0.2s;
+            white-space: nowrap;
+        }
+        .tab-btn:hover {
+            color: var(--text-primary);
+        }
+        .tab-btn.active {
+            color: #FFC700;
+            border-color: #FFC700;
+        }
+    <\/style>
+</head>
+<body class="">
+
+    <!-- Auth Container -->
+    <div id="auth-wrapper" class="flex items-center justify-center min-h-screen p-4">
+        <div id="auth-container" class="w-full max-w-md">
+            <div class="card">
+                <div id="login-view">
+                    <h2 class="text-2xl font-bold text-center mb-6">Вход в систему</h2>
+                    <form id="login-form" class="space-y-4">
+                        <div>
+                            <label for="login-email" class="block text-sm font-medium text-secondary">Email</label>
+                            <input type="email" id="login-email" class="mt-1 form-input" required>
+                        </div>
+                        <div>
+                            <label for="login-password" class="block text-sm font-medium text-secondary">Пароль</label>
+                            <input type="password" id="login-password" class="mt-1 form-input" required>
+                        </div>
+                        <p id="login-error" class="text-red-500 text-sm hidden"></p>
+                        <button type="submit" class="btn btn-submit w-full">Войти</button>
+                    </form>
+                    <p class="mt-4 text-center text-sm text-secondary">
+                        Нет аккаунта? <a href="#" id="show-register" class="font-medium text-[#FFC700] hover:underline">Зарегистрироваться</a>
+                    </p>
+                </div>
+                <div id="register-view" class="hidden">
+                    <h2 class="text-2xl font-bold text-center mb-6">Регистрация</h2>
+                    <form id="register-form" class="space-y-4">
+                        <div>
+                            <label for="register-email" class="block text-sm font-medium text-secondary">Email</label>
+                            <input type="email" id="register-email" class="mt-1 form-input" required>
+                        </div>
+                        <div>
+                            <label for="register-password" class="block text-sm font-medium text-secondary">Пароль</label>
+                            <input type="password" id="register-password" class="mt-1 form-input" required>
+                        </div>
+                        <p id="register-error" class="text-red-500 text-sm hidden"></p>
+                        <button type="submit" class="btn btn-submit w-full">Создать аккаунт</button>
+                    </form>
+                    <p class="mt-4 text-center text-sm text-secondary">
+                        Уже есть аккаунт? <a href="#" id="show-login" class="font-medium text-[#FFC700] hover:underline">Войти</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Container -->
+    <div id="app-container" class="max-w-screen-2xl mx-auto hidden">
+        <header class="mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+                <div>
+                    <p class="text-sm text-secondary">Вы вошли как:</p>
+                    <p id="user-email" class="text-lg font-bold"></p>
+                    <button id="logout-btn" class="text-sm text-red-500 hover:underline">Выйти</button>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button id="history-btn" class="btn btn-submit w-auto px-4 py-2 text-sm rounded-md">История</button>
+                    <label for="theme-toggle" title="Переключить тему" class="relative w-16 h-8 flex items-center theme-toggle-label rounded-full cursor-pointer p-1 transition-colors duration-300">
+                        <input type="checkbox" id="theme-toggle" class="sr-only slider-checkbox">
+                        <span class="w-6 h-6 rounded-full shadow-md transform transition-transform duration-300 flex items-center justify-center slider-dot">
+                            <svg id="theme-icon-moon" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                            </svg>
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main id="main-view">
+            <div class="card">
+                <h2 class="text-2xl font-semibold mb-6">Добавить новую задачу</h2>
+                <form id="add-task-form" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label for="task-author" class="block text-sm font-medium text-secondary">Автор</label>
+                            <input type="text" id="task-author" class="mt-1 form-input" required>
+                        </div>
+                        <div>
+                            <label for="task-urgency" class="block text-sm font-medium text-secondary">Срочность</label>
+                            <select id="task-urgency" class="mt-1 form-select" required>
+                                <option value="низкая">Низкая</option>
+                                <option value="средняя" selected>Средняя</option>
+                                <option value="высокая">Высокая</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="task-hours" class="block text-sm font-medium text-secondary">Кол-во часов</label>
+                            <input type="number" id="task-hours" step="0.1" class="mt-1 form-input" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="task-description" class="block text-sm font-medium text-secondary">Описание задачи</label>
+                        <textarea id="task-description" rows="3" class="mt-1 form-textarea" required></textarea>
+                    </div>
+                    <div>
+                        <label for="task-media-link" class="block text-sm font-medium text-secondary">Ссылка на фото/видео</label>
+                        <input type="url" id="task-media-link" placeholder="https://..." class="mt-1 form-input">
+                    </div>
+                    <button type="submit" class="btn btn-submit w-full mt-4">Добавить задачу</button>
+                </form>
+            </div>
+            <div class="card mt-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start mb-2 gap-4">
+                    <h2 class="text-2xl font-semibold">Журнал задач</h2>
+                    <div class="flex items-center gap-2">
+                        <input type="date" id="search-date" class="form-input w-auto text-sm">
+                        <button id="search-btn" class="btn btn-submit w-auto px-4 py-2 text-sm rounded-md">Найти</button>
+                        <button id="reset-btn" class="btn btn-secondary w-auto px-4 py-2 text-sm rounded-md">Сбросить</button>
+                    </div>
+                </div>
+                 <div class="mb-4 border-b" style="border-color: var(--border-color);">
+                    <nav class="-mb-px flex space-x-6 overflow-x-auto" aria-label="Tabs">
+                        <button data-view="active" class="tab-btn active">Активные задачи</button>
+                        <button data-view="completed" class="tab-btn">Выполненные задачи</button>
+                    </nav>
+                </div>
+                <div id="tasks-loading" class="text-center text-secondary py-8">Загрузка данных...</div>
+                <div class="overflow-x-auto hidden scrollable-table" id="tasks-table-container">
+                    <table class="min-w-full divide-y" style="border-color: var(--border-color);">
+                        <thead class="table-header sticky top-0">
+                            <tr>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-secondary uppercase tracking-wider">Готово?</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider">Срочность</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider">Автор</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-secondary uppercase tracking-wider">Часы</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider">Описание задачи</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider">Ответ инженера</th>
+                                <th class="px-6 py-3 text-center align-middle text-xs font-medium text-secondary uppercase tracking-wider">Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tasks-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+        
+        <!-- History View -->
+        <div id="history-view" class="hidden">
+             <div class="card">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 id="history-title" class="text-2xl font-semibold">История изменений</h2>
+                    <button id="back-btn" class="btn btn-secondary px-4 py-2 text-sm w-auto">Назад</button>
+                </div>
+                <div class="overflow-x-auto scrollable-table">
+                    <table class="min-w-full divide-y" style="border-color: var(--border-color);">
+                        <thead class="table-header">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider">Дата</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider">Пользователь</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider">Действие</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider">Детали</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Confirmation Modal -->
+    <div id="confirm-modal" class="modal-overlay hidden">
+        <div class="card w-full max-w-sm">
+            <h2 class="text-xl font-semibold mb-4" id="confirm-modal-title">Подтвердить удаление</h2>
+            <p id="confirm-modal-text" class="text-secondary mb-6">Вы уверены, что хотите удалить эту задачу? Это действие необратимо.</p>
+            <div class="flex justify-end gap-4">
+                <button type="button" id="confirm-cancel-btn" class="btn btn-secondary">Отмена</button>
+                <button type="button" id="confirm-delete-btn" class="btn bg-red-600 hover:bg-red-700 text-white">Удалить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal-overlay hidden">
+        <div class="card w-full max-w-2xl">
+            <h2 class="text-xl font-semibold mb-4" id="edit-modal-title">Редактировать задачу</h2>
+            <form id="edit-form" class="space-y-4 max-h-[70vh] overflow-y-auto pr-4">
+                <!-- Dynamic content will be injected here by JavaScript -->
+            </form>
+            <div class="flex justify-end gap-4 mt-6">
+                <button type="button" id="edit-cancel-btn" class="btn btn-secondary">Отмена</button>
+                <button type="submit" form="edit-form" id="edit-save-btn" class="btn btn-submit">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="module">
+        // --- Firebase Initialization ---
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, serverTimestamp, getDocs, doc, getDoc, updateDoc, deleteDoc, orderBy, Timestamp, writeBatch } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Firebase Configuration ---
+            const firebaseConfig = {
+                apiKey: "AIzaSyCvfvaSyivvSi71NPBCWusmk-q1XPsxm8Q",
+                authDomain: "remontrabotarazina.firebaseapp.com",
+                projectId: "remontrabotarazina",
+                storageBucket: "remontrabotarazina.appspot.com",
+                messagingSenderId: "453060789113",
+                appId: "1:453060789113:web:cf6080ce9e4bf4a020a5a8"
+            };
+            
+            // --- Initialize Firebase ---
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+            const auth = getAuth(app);
+            const appId = firebaseConfig.projectId;
+
+            // --- App State ---
+            let currentUserEmail = null;
+            let unsubscribeTasks, unsubscribeHistory;
+            let allTasks = [];
+            let itemToDeleteContext = { id: null };
+            let itemToEditContext = { id: null, data: null };
+            let currentView = 'active';
+
+            // --- UI Elements ---
+            const authWrapper = document.getElementById('auth-wrapper');
+            const appContainer = document.getElementById('app-container');
+            const loginView = document.getElementById('login-view');
+            const registerView = document.getElementById('register-view');
+            const showRegisterBtn = document.getElementById('show-register');
+            const showLoginBtn = document.getElementById('show-login');
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const logoutBtn = document.getElementById('logout-btn');
+            const userEmailEl = document.getElementById('user-email');
+            const loginError = document.getElementById('login-error');
+            const registerError = document.getElementById('register-error');
+            
+            const mainView = document.getElementById('main-view');
+            const historyView = document.getElementById('history-view');
+            const historyTableBody = document.getElementById('history-table-body');
+            const historyBtn = document.getElementById('history-btn');
+            const backBtn = document.getElementById('back-btn');
+
+            // MODAL Elements
+            const confirmModal = document.getElementById('confirm-modal');
+            const confirmCancelBtn = document.getElementById('confirm-cancel-btn');
+            const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
+            const editModal = document.getElementById('edit-modal');
+            const editForm = document.getElementById('edit-form');
+            const editCancelBtn = document.getElementById('edit-cancel-btn');
+            
+            const themeToggle = document.getElementById('theme-toggle');
+            const docHtml = document.documentElement;
+            const addTaskForm = document.getElementById('add-task-form');
+            const tasksTableBody = document.getElementById('tasks-table-body');
+
+
+            // --- Authentication State Observer ---
+            onAuthStateChanged(auth, user => {
+                if (user) {
+                    currentUserEmail = user.email;
+                    authWrapper.classList.add('hidden');
+                    appContainer.classList.remove('hidden');
+                    document.body.classList.add('p-4', 'md:p-8');
+                    userEmailEl.textContent = user.email;
+                    initializeAppLogic();
+                } else {
+                    currentUserEmail = null;
+                    authWrapper.classList.remove('hidden');
+                    appContainer.classList.add('hidden');
+                    document.body.classList.remove('p-4', 'md:p-8');
+                    userEmailEl.textContent = '';
+                    if (unsubscribeTasks) unsubscribeTasks();
+                    if (unsubscribeHistory) unsubscribeHistory();
+                }
+            });
+
+            // --- Authentication Handlers ---
+            showRegisterBtn.addEventListener('click', (e) => { e.preventDefault(); loginView.classList.add('hidden'); registerView.classList.remove('hidden'); });
+            showLoginBtn.addEventListener('click', (e) => { e.preventDefault(); registerView.classList.add('hidden'); loginView.classList.remove('hidden'); });
+            registerForm.addEventListener('submit', (e) => { e.preventDefault(); handleRegistration(); });
+            loginForm.addEventListener('submit', (e) => { e.preventDefault(); handleLogin(); });
+            logoutBtn.addEventListener('click', () => { signOut(auth).catch(error => console.error("Logout error:", error)); });
+
+            function handleRegistration() {
+                const email = document.getElementById('register-email').value;
+                const password = document.getElementById('register-password').value;
+                createUserWithEmailAndPassword(auth, email, password).catch(handleAuthError(registerError));
+            }
+
+            function handleLogin() {
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                signInWithEmailAndPassword(auth, email, password).catch(handleAuthError(loginError));
+            }
+            
+            function handleAuthError(errorElement) {
+                return function(error) {
+                    console.error("Auth error:", error);
+                    errorElement.textContent = "Ошибка: " + error.message;
+                    errorElement.classList.remove('hidden');
+                }
+            }
+            
+            // --- Main App Logic Initializer ---
+            function initializeAppLogic() {
+                setupEventListeners();
+                listenForTasksChanges();
+                seedInitialData();
+            }
+
+            // --- Theme Toggle Logic ---
+            function applyTheme() {
+                if (themeToggle.checked) { // Light theme
+                    docHtml.classList.add('light');
+                    localStorage.setItem('theme', 'light');
+                } else { // Dark theme
+                    docHtml.classList.remove('light');
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+            if (localStorage.getItem('theme') === 'light') themeToggle.checked = true;
+            else themeToggle.checked = false;
+            applyTheme();
+            themeToggle.addEventListener('change', applyTheme);
+            
+            // #############################################
+            // #           REPAIR TASKS SECTION            #
+            // #############################################
+            const tasksDataRef = collection(db, \`artifacts/\${appId}/public/data/repair_tasks\`);
+            const historyRef = collection(db, \`artifacts/\${appId}/public/data/repair_tasks_history\`);
+
+            function listenForTasksChanges() {
+                const q = query(tasksDataRef, orderBy('createdAt', 'desc'));
+                unsubscribeTasks = onSnapshot(q, (snapshot) => {
+                    allTasks = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    renderTasksTable();
+                }, (error) => console.error("Error loading tasks:", error));
+            }
+            
+            function renderTasksTable() {
+                const tableBody = tasksTableBody;
+                const loadingState = document.getElementById('tasks-loading');
+                const tableContainer = document.getElementById('tasks-table-container');
+                const searchDateVal = document.getElementById('search-date').value;
+
+                // 1. Filter by current view (active/completed)
+                let tasksToDisplay = allTasks.filter(task => {
+                    return currentView === 'active' ? !task.isDone : task.isDone;
+                });
+
+                // 2. Filter by search date if provided
+                if (searchDateVal) {
+                    tasksToDisplay = tasksToDisplay.filter(task => {
+                        if (task.createdAt && task.createdAt.toDate) {
+                            const taskDate = task.createdAt.toDate().toISOString().split('T')[0];
+                            return taskDate === searchDateVal;
+                        }
+                        return false;
+                    });
+                }
+                
+                tableBody.innerHTML = '';
+                if (tasksToDisplay.length === 0) {
+                    let msg = currentView === 'active' ? 'Нет активных задач.' : 'Нет выполненных задач.';
+                     if (searchDateVal) {
+                        const formattedDate = new Date(searchDateVal).toLocaleDateString('ru-RU');
+                        msg += \` на \${formattedDate}\`;
+                    }
+                    loadingState.textContent = msg;
+                    loadingState.classList.remove('hidden');
+                    tableContainer.classList.add('hidden');
+                    return;
+                }
+                
+                loadingState.classList.add('hidden');
+                tableContainer.classList.remove('hidden');
+                
+                const groupedData = tasksToDisplay.reduce((acc, task) => {
+                    if (task.createdAt && task.createdAt.toDate) {
+                        const dateKey = task.createdAt.toDate().toISOString().split('T')[0];
+                        if (!acc[dateKey]) {
+                            acc[dateKey] = [];
+                        }
+                        acc[dateKey].push(task);
+                    }
+                    return acc;
+                }, {});
+
+                const sortedDates = Object.keys(groupedData).sort((a, b) => new Date(b) - new Date(a));
+
+                sortedDates.forEach(dateKey => {
+                    const date = new Date(dateKey);
+                    const formattedDate = date.toLocaleDateString('ru-RU', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                    const dateRow = document.createElement('tr');
+                    dateRow.innerHTML = \`<td colspan="7" class="px-6 py-2 text-sm font-semibold" style="background-color: var(--date-header-bg);">\${formattedDate}</td>\`;
+                    tableBody.appendChild(dateRow);
+
+                    const tasksForDay = groupedData[dateKey];
+                    tasksForDay.forEach(task => {
+                        const row = document.createElement('tr');
+                        row.style.transition = 'background-color 0.3s';
+                        row.addEventListener('mouseover', () => { row.style.backgroundColor = 'var(--hover-bg)'; });
+                        row.addEventListener('mouseout', () => { row.style.backgroundColor = 'transparent'; });
+
+                        const descriptionHtml = \`
+                            <div class="whitespace-pre-wrap">\${task.description}</div>
+                            \${task.mediaLink ? \`
+                                <a href="\${task.mediaLink}" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center gap-x-2 text-sm rounded-md p-2 font-semibold bg-blue-500 bg-opacity-10 text-blue-400 hover:bg-opacity-20 transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+                                    </svg>
+                                    Посмотреть вложение
+                                </a>\` : ''}
+                        \`;
+
+                        const engineerResponseHtml = \`
+                            <div class="whitespace-pre-wrap">\${task.engineerResponse || '---'}</div>
+                             \${task.engineerMediaLink ? \`
+                                <a href="\${task.engineerMediaLink}" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center gap-x-2 text-sm rounded-md p-2 font-semibold bg-blue-500 bg-opacity-10 text-blue-400 hover:bg-opacity-20 transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+                                    </svg>
+                                    Посмотреть вложение
+                                </a>\` : ''}
+                        \`;
+
+                        row.innerHTML = \`
+                            <td class="px-6 py-4 text-center">
+                                <input type="checkbox" data-id="\${task.id}" class="custom-checkbox status-checkbox" \${task.isDone ? 'checked' : ''}>
+                            </td>
+                            <td class="px-6 py-4 text-sm"><span class="urgency-badge urgency-\${task.urgency}">\${task.urgency}</span></td>
+                            <td class="px-6 py-4 text-sm">\${task.author}</td>
+                            <td class="px-6 py-4 text-sm text-center">\${task.hours}</td>
+                            <td class="px-6 py-4 text-sm align-top">\${descriptionHtml}</td>
+                            <td class="px-6 py-4 text-sm align-top">\${engineerResponseHtml}</td>
+                            <td class="px-6 py-4 text-center align-middle text-sm">
+                                <div class="flex items-center justify-center gap-2">
+                                    <button data-id="\${task.id}" class="edit-btn p-1 hover:text-yellow-500" title="Редактировать">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L14.732 3.732z" /></svg>
+                                    </button>
+                                    <button data-id="\${task.id}" class="delete-btn p-1 hover:text-red-500" title="Удалить">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                                    </button>
+                                </div>
+                            </td>\`;
+                        tableBody.appendChild(row);
+                    });
+                });
+            }
+
+            async function handleAddTask(e) {
+                e.preventDefault();
+                
+                const newTaskData = {
+                    author: document.getElementById('task-author').value,
+                    urgency: document.getElementById('task-urgency').value,
+                    hours: parseFloat(document.getElementById('task-hours').value),
+                    description: document.getElementById('task-description').value,
+                    mediaLink: document.getElementById('task-media-link').value.trim() || "",
+                    isDone: false,
+                    engineerResponse: "",
+                    engineerMediaLink: "",
+                    authorResponse: "",
+                    createdAt: serverTimestamp()
+                };
+
+                try {
+                    const docRef = await addDoc(tasksDataRef, newTaskData);
+                    const logDetails = { ...newTaskData };
+                    delete logDetails.createdAt;
+                    await logHistory('create', docRef.id, { newData: logDetails });
+                    e.target.reset();
+                    document.getElementById('task-urgency').value = 'средняя';
+                } catch (error) {
+                    console.error("Failed to add task:", error);
+                }
+            }
+
+            // --- Initial Data Seeding ---
+            async function seedInitialData() {
+                const snapshot = await getDocs(query(tasksDataRef));
+                if (!snapshot.empty) return;
+                
+                console.log("Tasks collection is empty. Seeding initial data...");
+
+                const initialTask = {
+                    isDone: false,
+                    createdAt: Timestamp.fromDate(new Date("2025-10-17T09:00:00")),
+                    urgency: "средняя",
+                    author: "Краев",
+                    hours: 1,
+                    description: "В обратном осмосе, который находится под лестницей первой секции, отваливается контакт, из за чего не набирается вода в увлажнители.",
+                    mediaLink: "",
+                    engineerResponse: "",
+                    engineerMediaLink: "",
+                    authorResponse: ""
+                };
+
+                try {
+                    await addDoc(tasksDataRef, initialTask);
+                    console.log("Successfully seeded initial task!");
+                } catch (error) {
+                    console.error("Error seeding initial task: ", error);
+                }
+            }
+
+
+            // #############################################
+            // #        GENERAL & SHARED SECTION           #
+            // #############################################
+            
+            function setupEventListeners() {
+                addTaskForm.addEventListener('submit', handleAddTask);
+                tasksTableBody.addEventListener('click', handleTableActions);
+
+                // Search Listeners
+                document.getElementById('search-btn').addEventListener('click', renderTasksTable);
+                document.getElementById('reset-btn').addEventListener('click', () => {
+                    document.getElementById('search-date').value = '';
+                    renderTasksTable();
+                });
+
+                // Tabs listener
+                document.querySelector('nav[aria-label="Tabs"]').addEventListener('click', e => {
+                    const target = e.target.closest('button.tab-btn');
+                    if (target && !target.classList.contains('active')) {
+                        currentView = target.dataset.view;
+                        document.querySelector('.tab-btn.active').classList.remove('active');
+                        target.classList.add('active');
+                        document.getElementById('search-date').value = ''; // Clear date search on tab switch
+                        renderTasksTable(); // Re-render with new view filter
+                    }
+                });
+
+                // History Listeners
+                historyBtn.addEventListener('click', showHistoryView);
+                backBtn.addEventListener('click', () => { 
+                    historyView.classList.add('hidden');
+                    mainView.classList.remove('hidden');
+                    if(unsubscribeHistory) unsubscribeHistory();
+                });
+                
+                // Custom confirmation modal listeners
+                confirmCancelBtn.addEventListener('click', () => confirmModal.classList.add('hidden'));
+                confirmDeleteBtn.addEventListener('click', handleConfirmDelete);
+
+                // Edit modal listeners
+                editForm.addEventListener('submit', handleUpdateEntry);
+                editCancelBtn.addEventListener('click', () => editModal.classList.add('hidden'));
+            }
+
+            function handleTableActions(e) {
+                const target = e.target;
+                const docId = target.dataset.id;
+
+                if (target.classList.contains('status-checkbox')) {
+                    handleStatusChange(docId, target.checked);
+                    return;
+                }
+
+                const button = target.closest('button');
+                if (!button) return;
+                
+                const id = button.dataset.id;
+
+                if (button.classList.contains('delete-btn')) {
+                    itemToDeleteContext = { id };
+                    confirmModal.classList.remove('hidden');
+                } else if (button.classList.contains('edit-btn')) {
+                    openEditModal(id);
+                }
+            }
+            
+            async function handleStatusChange(docId, isDone) {
+                const docRef = doc(tasksDataRef, docId);
+                const task = allTasks.find(t => t.id === docId);
+                if (!task) return;
+                
+                const oldData = { ...task };
+                const newData = { ...task, isDone };
+
+                try {
+                    await updateDoc(docRef, { isDone: isDone });
+                    await logHistory('update', docId, { oldData, newData });
+                } catch (error) {
+                    console.error("Error updating status:", error);
+                    // Revert checkbox on error
+                    const checkbox = tasksTableBody.querySelector(\`.status-checkbox[data-id="\${docId}"]\`);
+                    if(checkbox) checkbox.checked = !isDone;
+                }
+            }
+
+            async function openEditModal(docId) {
+                const docRef = doc(tasksDataRef, docId);
+                try {
+                    const docSnap = await getDoc(docRef);
+                    if (!docSnap.exists()) {
+                        console.error("Document not found for editing!");
+                        return;
+                    }
+                    const data = docSnap.data();
+                    itemToEditContext = { id: docId, data: data };
+
+                    editForm.innerHTML = \`
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label for="edit-task-author" class="block text-sm font-medium text-secondary">Автор</label>
+                                <input type="text" id="edit-task-author" class="mt-1 form-input" value="\${data.author}" required>
+                            </div>
+                            <div>
+                                <label for="edit-task-urgency" class="block text-sm font-medium text-secondary">Срочность</label>
+                                <select id="edit-task-urgency" class="mt-1 form-select" required>
+                                    <option value="низкая" \${data.urgency === 'низкая' ? 'selected' : ''}>Низкая</option>
+                                    <option value="средняя" \${data.urgency === 'средняя' ? 'selected' : ''}>Средняя</option>
+                                    <option value="высокая" \${data.urgency === 'высокая' ? 'selected' : ''}>Высокая</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="edit-task-hours" class="block text-sm font-medium text-secondary">Кол-во часов</label>
+                                <input type="number" id="edit-task-hours" step="0.1" class="mt-1 form-input" value="\${data.hours}" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="edit-task-description" class="block text-sm font-medium text-secondary">Описание задачи от автора</label>
+                            <textarea id="edit-task-description" rows="3" class="mt-1 form-textarea" required>\${data.description}</textarea>
+                        </div>
+                        <div>
+                            <label for="edit-task-media-link" class="block text-sm font-medium text-secondary">Ссылка на фото/видео от автора</label>
+                            <input type="url" id="edit-task-media-link" class="mt-1 form-input" value="\${data.mediaLink || ''}" placeholder="https://...">
+                        </div>
+                         <div>
+                            <label for="edit-task-engineer-response" class="block text-sm font-medium text-secondary">Ответ инженера</label>
+                            <textarea id="edit-task-engineer-response" rows="3" class="mt-1 form-textarea">\${data.engineerResponse || ''}</textarea>
+                        </div>
+                        <div>
+                            <label for="edit-engineer-media-link" class="block text-sm font-medium text-secondary">Ссылка на фото/видео от инженера</label>
+                            <input type="url" id="edit-engineer-media-link" class="mt-1 form-input" value="\${data.engineerMediaLink || ''}" placeholder="https://...">
+                        </div>
+                         <div>
+                            <label for="edit-task-author-response" class="block text-sm font-medium text-secondary">Ответ автора</label>
+                            <textarea id="edit-task-author-response" rows="3" class="mt-1 form-textarea">\${data.authorResponse || ''}</textarea>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="edit-task-isDone" class="custom-checkbox mr-2" \${data.isDone ? 'checked' : ''}>
+                            <label for="edit-task-isDone" class="text-sm font-medium text-secondary">Задача выполнена</label>
+                        </div>
+                    \`;
+                    editModal.classList.remove('hidden');
+
+                } catch (error) {
+                    console.error("Error fetching document for edit:", error);
+                }
+            }
+            
+            async function handleUpdateEntry(e) {
+                e.preventDefault();
+                const { id, data: oldData } = itemToEditContext;
+                if (!id) return;
+
+                const newData = {
+                    author: document.getElementById('edit-task-author').value,
+                    urgency: document.getElementById('edit-task-urgency').value,
+                    hours: parseFloat(document.getElementById('edit-task-hours').value),
+                    description: document.getElementById('edit-task-description').value,
+                    mediaLink: document.getElementById('edit-task-media-link').value.trim() || "",
+                    engineerResponse: document.getElementById('edit-task-engineer-response').value,
+                    engineerMediaLink: document.getElementById('edit-engineer-media-link').value.trim() || "",
+                    authorResponse: document.getElementById('edit-task-author-response').value,
+                    isDone: document.getElementById('edit-task-isDone').checked
+                };
+                
+                const docRef = doc(tasksDataRef, id);
+
+                try {
+                    await updateDoc(docRef, newData);
+                    await logHistory('update', id, { oldData, newData: { ...oldData, ...newData } }); // merge to include createdAt
+                } catch (error) {
+                    console.error("Failed to update entry:", error);
+                } finally {
+                    editModal.classList.add('hidden');
+                    itemToEditContext = { id: null, data: null };
+                }
+            }
+
+            function handleConfirmDelete() {
+                const { id } = itemToDeleteContext;
+                if (id) {
+                    handleDeleteTask(id);
+                }
+                confirmModal.classList.add('hidden');
+                itemToEditContext = { id: null }; 
+            }
+
+            async function handleDeleteTask(docId) {
+                const docRef = doc(tasksDataRef, docId);
+                try {
+                    const docSnap = await getDoc(docRef);
+                    if(!docSnap.exists()) return;
+                    const deletedData = docSnap.data();
+                    await deleteDoc(docRef);
+                    await logHistory('delete', docId, { deletedData });
+                } catch(error) {
+                    console.error("Failed to delete task:", error);
+                }
+            }
+
+            // --- History & Search ---
+            function showHistoryView() {
+                mainView.classList.add('hidden');
+                historyView.classList.remove('hidden');
+                initializeHistoryView();
+            }
+            
+            function initializeHistoryView() {
+                const q = query(historyRef, orderBy('timestamp', 'desc'));
+                unsubscribeHistory = onSnapshot(q, (snapshot) => {
+                    renderHistory(snapshot.docs.map(doc => doc.data()));
+                });
+            }
+
+            async function logHistory(action, docId, details) {
+                const sanitizeData = (data) => {
+                    if (!data) return data;
+                    const sanitized = { ...data };
+                    if (sanitized.createdAt?.toDate) {
+                        sanitized.createdAt = sanitized.createdAt.toDate().toISOString();
+                    }
+                    return sanitized;
+                };
+
+                const logData = {};
+                if (details.oldData) logData.oldData = sanitizeData(details.oldData);
+                if (details.newData) logData.newData = sanitizeData(details.newData);
+                if (details.deletedData) logData.deletedData = sanitizeData(details.deletedData);
+
+                try {
+                    await addDoc(historyRef, { 
+                        action, 
+                        docId, 
+                        details: logData, 
+                        userEmail: currentUserEmail, 
+                        timestamp: serverTimestamp() 
+                    });
+                } catch(error) { console.error("Failed to log history:", error); }
+            }
+
+            function renderHistory(historyData) {
+                historyTableBody.innerHTML = '';
+                if (historyData.length === 0) {
+                    historyTableBody.innerHTML = '<tr><td colspan="4" class="text-center py-8 text-secondary">История изменений пуста.</td></tr>';
+                    return;
+                }
+                historyData.forEach(log => {
+                    const row = document.createElement('tr');
+                    const date = log.timestamp?.toDate ? log.timestamp.toDate().toLocaleString('ru-RU') : 'N/A';
+                    let detailsHtml = '';
+
+                    if (log.action === 'create' && log.details?.newData) {
+                        detailsHtml = \`Создана задача: "\${log.details.newData.description || ''}"\`;
+                    } else if (log.action === 'delete' && log.details?.deletedData) {
+                        detailsHtml = \`Удалена задача: "\${log.details.deletedData.description || ''}"\`;
+                    } else if (log.action === 'update' && log.details?.newData && log.details?.oldData) {
+                        const changes = Object.keys(log.details.newData).reduce((acc, key) => {
+                            if (key === 'createdAt') return acc;
+                            const oldValue = log.details.oldData[key] ?? 'пусто';
+                            const newValue = log.details.newData[key] ?? 'пусто';
+                            
+                            if (String(oldValue) !== String(newValue)) {
+                                acc.push(\`<b>\${key}</b>: "\${oldValue}" -> "\${newValue}"\`);
+                            }
+                            return acc;
+                        }, []);
+                        detailsHtml = changes.length > 0 ? \`Обновлено: \${changes.join('<br>')}\` : 'Запись обновлена (без изменений).';
+                    } else {
+                        detailsHtml = \`Действие "\${log.action}" (нет деталей)\`;
+                    }
+
+                    row.innerHTML = \`
+                        <td class="px-6 py-4 whitespace-nowrap text-sm">\${date}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-secondary">\${log.userEmail}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-secondary">\${log.action}</td>
+                        <td class="px-6 py-4 text-sm text-secondary">\${detailsHtml}</td>\`;
+                    historyTableBody.appendChild(row);
+                });
+            }
+        });
+    <\/script>
+</body>
+</html>
+        `;
+
+        // Обновленная функция для загрузки приложения
+        function loadApp(source, clickedLink) {
+            // Если источник - 'local', загружаем HTML-код журнала в iframe
+            if (source === 'local') {
+                appFrame.srcdoc = repairLogAppHtml;
+                appFrame.src = ''; // Очищаем src, чтобы srcdoc имел приоритет
+            } 
+            // Иначе, загружаем внешний URL
+            else {
+                appFrame.src = source;
+                appFrame.srcdoc = ''; // Очищаем srcdoc
+            }
 
             // Обновляем "активный" класс в меню
             navLinks.forEach(link => link.classList.remove('active'));
             clickedLink.classList.add('active');
         }
     </script>
-
 </body>
 </html>
 
